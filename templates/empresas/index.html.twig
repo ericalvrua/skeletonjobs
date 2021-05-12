@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista Empresas{% endblock %}
+
+{% block body %}
+
+    <div class="lista">
+        {% for empresa in empresas %}
+        <div class="elementos">
+        
+            <h2 style="margin-left:5%;">{{ empresa.nombre }}</h2>
+            <h4 style="margin-left:5%;">Cif: {{ empresa.cif }}</h4>
+
+        
+        
+            <a style="margin-right: 3%; width:95%" class="button primary" href="{{ path('empresas_show', {'id': empresa.id}) }}">Mas
+                detalles</a><br><br>
+        
+        </div><br>
+        
+        {% endfor %}
+        
+        </div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block body %}
+<div class="datosEmpresa">
+    <div id="elementos">
+        <h1 style="font-size: 3em;">{{usuario.nombre}} {{ usuario.apellidos }}</h1>
+        <table class="table">
+        <tbody>
+
+            <tr>
+                <th>DNI</th>
+                <td>{{ usuario.dni }}</td>
+            </tr>
+            <tr>
+                <th>Correo</th>
+                <td>{{ usuario.correo }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_nacimiento</th>
+                <td>{{ usuario.fechaNacimiento ? usuario.fechaNacimiento|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ usuario.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ usuario.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Codigo_postal</th>
+                <td>{{ usuario.codigoPostal }}</td>
+            </tr>
+            <tr>
+                <th>Pais</th>
+                <td>{{ usuario.pais }}</td>
+            </tr>
+            <tr>
+                <th>Provincia</th>
+                <td>{{ usuario.provincia }}</td>
+            </tr>
+            <tr>
+                <th>Localidad</th>
+                <td>{{ usuario.localidad }}</td>
+            </tr>
+            <tr>
+                <th>Cv</th>
+                {% if usuario.cv != "" %}<td><a href="{{ asset('uploads/cv/' ~ usuario.cv) }}" >Ver CV</a>{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ usuario.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if app.session.get('usuario') != "" %}
+    <a style="width:60%;"class="button primary" href="{{ path('usuarios_perfil') }}">Volver al perfil</a>
+    {% else %}
+    <a class="button primary" style="width:60%;margin-left:80%; margin-top:40px" href="{{ app.request.server.get('HTTP_REFERER')}}">Atras</a>
+
+    {% endif %}
+</div>
+
+</div>
+{% endblock %}

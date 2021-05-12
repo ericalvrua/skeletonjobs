@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ofertas{% endblock %}
+
+{% block body %}
+
+<div class="listaofertas">
+    <h1 style="font-size: 3em; text-align: center;">Usuarios inscritos</h1>
+    {% for ofertas in ofertas %}
+    <div class="elementosofertas">
+        {% if ofertas.descartado != true %}
+        <h2 style="text-align: center;">{{ ofertas.usuarios.nombre }} {{ ofertas.usuarios.apellidos }}</h2>
+        <a style="margin-right: 3%; width:95%" class="button primary" class="button primary"
+            href="{{ path('usuarios_show', {'id': ofertas.usuarios.id})}}">Detalles usuario</a><br><br>
+
+        <a style="margin-right: 3%; width:95%" class="button primary" class="button primary"
+            href="{{ path('usuarios_crearCorreo', {'idUsuario': ofertas.usuarios.id, 'idOferta': ofertas.ofertas.id}) }}">Enviar
+            correo</a><br><br>
+
+        <a style="margin-right: 3%; width:95%" class="button primary" class="button primary"
+            href="{{ path('empresas_respuestas', {'idUsuario': ofertas.usuarios.id, 'idOferta': ofertas.ofertas.id}) }}">Ver
+            respuestas</a><br><br>
+
+        <a style="margin-right: 3%; width:95%" class="button primary" class="button primary"
+            href="{{ path('empresas_descartar', {'idUsuario': ofertas.usuarios.id, 'idOferta': ofertas.ofertas.id}) }}">Descartar
+            Usuario</a><br><br>
+
+        {% endif %}
+    </div><br>
+    {% else %}
+    <h1 style="font-size: 1.5em;text-align: center;">No existe ningun usuario inscrito</h1>
+    {% endfor %}
+</div><br><br><br>
+<a style="width:60%; margin-right:20%;margin-top:-4em; float:right" class="button primary" href="{{ path('empresas_perfil') }}">Volver al perfil</a></td>
+</div>
+{% endblock %}

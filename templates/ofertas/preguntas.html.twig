@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ofertas{% endblock %}
+
+{% block body %}
+
+<div class="editar">
+    <h1 style="font-size: 2.5em;">Preguntas de interes</h1>
+<div>
+    <form action="{{ path('ofertas_registro')}}" method="POST">
+    {% for pregunta in preguntas %}
+    
+        <label for="respuesta[]">{{pregunta.pregunta}}</label>
+        <input type="text" name="respuesta[]" {% if pregunta.requerido == true %} required {% endif %}><br><br>
+        <input type="hidden" name="preguntaid[]" value="{{ pregunta.id }}">
+    {% endfor %}
+    <input type="hidden" name="idempresa" value="{{ idempresa }}">
+    <input type="hidden" name="idoferta" value="{{ idoferta }}">
+    <input class="button primary" style="width:60%" type="submit" value="Enviar">
+</form>
+</div></div>
+    {% endblock %}

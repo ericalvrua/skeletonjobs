@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ofertas{% endblock %}
+
+{% block javascripts %}
+
+<script src="{{asset('js/validarIsla.js')}}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery.scrolly.min.js')}}"></script>
+<script src="{{asset('js/jquery.dropotron.min.js')}}"></script>
+<script src="{{asset('js/jquery.scrollex.min.js')}}"></script>
+<script src="{{asset('js/browser.min.js')}}"></script>
+<script src="{{asset('js/breakpoints.min.js')}}"></script>
+<script src="{{asset('js/util.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maxField = 10; //Input fields increment limitation
+        var addButton = $('.add_button'); //Add button selector
+        var wrapper = $('.field_wrapper'); //Input field wrapper
+        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field">Borrar</a></div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+        $(addButton).click(function () { //Once add button is clicked
+            if (x < maxField) { //Check maximum number of input fields
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); // Add field html
+            }
+        });
+        $(wrapper).on('click', '.remove_button', function (e) { //Once remove button is clicked
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+</script>
+
+{% endblock javascripts %}
+
+{% block body %}
+<div class="editar">
+    <h1 style="font-size: 2em;">Editar oferta</h1>
+    <div class="formulario">
+        <form action="{{ path('ofertas_editar', {'id': oferta.id}) }}" method="post">
+            <h2>Detalles básicos</h2>
+            <label for="descripcion">Descripcion: </label>
+            <textarea id="descripcion" name="descripcion"> {{ oferta.descripcion }}</textarea><br>
+
+            <label for="puesto">Puesto: </label>
+            <input type="text" name="puesto" id="puesto" value="{{ oferta.puesto }}"><br>
+
+            <label for="tipo">Tipo de contrato: </label>
+            <input type="text" name="tipo" id="tipo" value="{{ oferta.tipo }}" required><br>
+
+
+
+            <h2>Categorias</h2>
+            <select name="categoria" id="categoria">
+                {% for categoria in categorias %}
+                <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                {% endfor %}
+            </select><br>
+            <br><br>
+
+            <h2>Islas</h2>
+            {% for isla in islas %}
+            <input type="checkbox" value="{{isla.id}}" name="isla{{isla.id}}" id="isla{{isla.id}}">{{isla.nombre}}<br>
+            {% endfor %}
+            <br><br>
+            <h2>Preguntas</h2>
+            <div class="field_wrapper">
+                <div>
+                    {% for pregunta in preguntas %}
+                    <label for="Preguntas">Preguntas</label>
+                    <input type="text" name="field_name[]" value="{{pregunta.Pregunta}}" /><br>
+                    {% endfor %}
+                    <a href="javascript:void(0);" class="add_button" title="Add field">Añadir</a><br><br>
+                </div>
+            </div>
+
+            <input class="button primary" style="width:60%" type="submit" value="Publicar" name="publicar"><br><br>
+            <input class="button primary" style="width:60%" type="submit" value="Guardar Borrador" name="guardar">
+        </form>
+        <a class="button primary" style="width:60%;" href="{{ path('ofertas_cerrar', {'id': oferta.id}) }}">Cerrar oferta</a>
+    </div>
+    <a class="button primary"style="width:60%" href="{{ path('empresas_perfil') }}">Atras</a>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil Empresas{% endblock %}
+
+{% block body %}
+{# {% set filter = app.session.get('empresa') %} #}
+
+<div class="perfil">
+    <h1 style="font-size: 2em;">¡Bienvenido {{ empresa.nombre }}!</h1>
+    <div id="enlaces" style="margin-top: 20px;">
+        <a  style="width:60%;" class="button primary" href="{{ path('empresas_show', {'id': empresa.id}) }}">Detalles del perfil</a><br><br>
+        <a  style="width:60%;"class="button primary" href="{{ path('empresas_editar')}}">Editar perfil</a><br><br>
+        <a  style="width:60%;" class="button primary" href="{{ path('ofertas_crear') }}">Crear una oferta nueva</a><br><br>
+        <a  style="width:60%;" class="button primary" href="{{ path('ofertas_listaempresas') }}">Lista de tus ofertas</a><br><br>
+        
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil Usuarios{% endblock %}
+
+{% block body %}
+{# {% set filter = app.session.get('empresa') %} #}
+
+<div class="perfil">
+    <h1 style="font-size: 2em;">¡Bienvenido {{ usuario.nombre }}!</h1>
+    <div id="enlaces" style="margin-top: 20px;">
+        <a style="width:60%;" class="button primary" href="{{ path('usuarios_show', {'id': usuario.id}) }}">Detalles</a><br><br>
+        <a style="width:60%;" class="button primary" href="{{ path('usuarios_editar') }}">Editar detalles</a><br><br>
+        <a style="width:60%;" class="button primary" href="{{ path('ofertas_listausuario') }}">Mostrar ofertas</a><br><br>
+        
+        
+    </div>
+</div>
+{% endblock %}

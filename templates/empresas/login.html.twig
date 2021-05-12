@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Login Empresas{% endblock %}
+
+
+{% block body %}
+
+
+<div class="login">
+    <h1 style="font-size: 2em;">Inicio sesión empresas</h1>
+    <form action='{{ path('empresas_login') }}' method="post">
+        <label for="correo">Correo electrónico: </label>
+        <input type="email" name="correo" id="correo" required></br>
+
+        <label for="pass">Contraseña: </label>
+        <input type="password" name="pass" id="pass" required></br>
+
+        <input style="width:60%;" class="button primary" type="submit" value="Iniciar Sesion">
+    </form>
+
+    {% if error is defined %}
+
+    <p>{{ error }}</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

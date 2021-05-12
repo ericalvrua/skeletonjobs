@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empresas{% endblock %}
+
+{% block body %}
+
+<div class="datosEmpresa">
+    <div id="elementos">
+        <h1 style="font-size: 3em;">{{empresa.nombre}}</h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Cif</th>
+                    <td>{{ empresa.cif }}</td>
+                </tr>
+
+                <tr>
+                    <th>Correo</th>
+                    <td>{{ empresa.correo }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td>{{ empresa.telefono }}</td>
+                </tr>
+                <tr>
+                    <th>Direccion</th>
+                    <td>{{ empresa.direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Codigo postal</th>
+                    <td>{{ empresa.codigoPostal }}</td>
+                </tr>
+                <tr>
+                    <th>Pais</th>
+                    <td>{{ empresa.pais }}</td>
+                </tr>
+                <tr>
+                    <th>Provincia</th>
+                    <td>{{ empresa.provincia }}</td>
+                </tr>
+                <tr>
+                    <th>Localidad</th>
+                    <td>{{ empresa.localidad }}</td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td>{{ empresa.descripcion }}</td>
+                </tr>
+
+            </tbody>
+
+
+        </table>
+        {% if app.session.get('empresa') != "" %}
+        <a style="width:50%;" class="button primary" href="{{ app.request.server.get('HTTP_REFERER')}}">Volver al perfil</a></td>
+        {% else %}
+        <a style="width:50%;" class="button primary" style="margin-left:80%; margin-top:40px" href="{{ path('empresas_index') }}">Atras</a>
+        </td>
+        {% endif %}
+    </div>
+
+
+</div>
+
+
+{% endblock %}

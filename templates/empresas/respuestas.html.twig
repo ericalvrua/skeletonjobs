@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Respuestas{% endblock %}
+
+{% block body %}
+
+<div class="datosOferta" style="margin-bottom: 80%;">
+    <h1 style="font-size: 2.5em;">Respuestas</h1>
+    <div class="preguntas">
+        {% set i = 0 %}
+        {% for pregunta in preguntas %}
+
+        <h1 style="font-size: 1.5em;">{{ pregunta.Pregunta }}</h1>
+
+        <p>{{respuestas[i].Respuesta}}</p>
+        {% set i = i + 1 %}
+
+        {% endfor %}
+    </div>
+    <a class="button primary" style="width:60%;float: right; margin-right:20%" href="{{ app.request.server.get('HTTP_REFERER')}}">Atras</a>
+</div>
+
+{% endblock %}

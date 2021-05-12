@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ofertas{% endblock %}
+
+{% block body %}
+
+
+
+<div class="datosOferta">
+    <div id="elementos">
+        <h1 style="font-size: 3em;">{{ oferta.puesto }}</h1>
+            <h2 style="text-align: center">{% if oferta.activo == true %}Oferta activa {% else %} Oferta inactiva {%
+                endif %}
+            </h2>
+            {% if registrado == true %}<h3 style="text-align: center">Numero de usuarios inscritos: {{numeroUsuarios}}
+            </h3>{% endif %}
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Puesto</th>
+                        <td>{{ oferta.puesto }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descripcion</th>
+                        <td>{{ oferta.descripcion }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Fecha</th>
+                        <td>{{ oferta.fecha ? oferta.fecha|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de conrato</th>
+                        <td>{{ oferta.tipo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre empresa</th>
+                        <td>{{ oferta.idempresa.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Categoria</th>
+                        <td>{{ oferta.categoria.nombre }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Localizacion</th>
+                        <td>
+                            {% for isla in oferta.islas %}
+                            {{ isla.nombre }}
+                            {% endfor %}
+                        </td>
+
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+
+            {% if app.session.get('usuario') != "" and oferta.activo == true and registrado == false %}
+            <form action="{{ path('ofertas_preguntas') }}" method="post">
+                <input type="hidden" name="idempresa" value="{{ oferta.idempresa.id }}">
+                <input type="hidden" name="idoferta" value="{{ oferta.id }}">
+
+                <input style="width:50%;" class="button primary" type="submit" value="Inscribirme">
+            </form>
+            {% endif %}
+
+            <a style="width:50%;" class="button primary" href="{{ path('ofertas_index') }}">Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}

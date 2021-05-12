@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Inicio{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/empleo-estilos.css')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('css/favicon.ico') }}" />
+    <noscript>
+        <link rel="stylesheet" href="{{ asset('css/noscript.ico') }}" />
+    </noscript>
+    {% endblock %}
+
+</head>
+
+<body class="is-preload landing">
+    <div id="page-wrapper">
+        {% block cabecera %}
+        <header id="header">
+            <h1 id="logo" style="font-size:1.5em"><a href="{{ path('index')}}">Skeleton Jobs</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="{{ path('index')}}">Inicio</a></li>
+                    <li><a href="{{ path('ofertas_index') }}">Ofertas</a></li>
+                    <li><a href="{{ path('empresas_index') }}">Empresas</a></li>
+
+                    {% if app.session.get('empresa') == "" and app.session.get('usuario') == "" %}
+
+                    <li>
+                        <a href="#" class="button primary">Registro</a>
+                        <ul>
+                            <li><a href="{{ path('empresas_crear') }}">Registro Empresas</a></li>
+                            <li><a href="{{ path('usuarios_crear') }}">Registro Usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="button primary">Iniciar Sesion</a>
+                        <ul>
+                            <li><a href="{{ path('empresas_login')}}">Inicio Empresas</a></li>
+                            <li><a href="{{ path('usuarios_login')}}">Inicio Usuarios</a></li>
+
+                        </ul>
+                    </li>
+
+                    {% elseif app.session.get('empresa') != "" %}
+
+                    <li><a class="button primary" href="#">Menu</a>
+                        <ul>
+                            <li><a href="{{ path('empresas_perfil')}}">Perfil</a></li>
+                            <li><a href="{{ path('empresas_cerrar_sesion')}}">Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+
+                    {% else %}
+
+
+                    <li><a class="button primary" href="#">Menu</a>
+                        <ul>
+                            <li><a href="{{ path('usuarios_perfil')}}">Perfil</a></li>
+                            <li><a href="{{ path('usuarios_cerrar_sesion')}}">Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </nav>
+
+
+        </header>
+        {% endblock cabecera %}
+
+
+        {% block body %}
+
+        {% endblock %}
+
+
+        {% block pie %}
+        <div id="footer">
+            <footer id="main-footer">
+
+                <p style="margin-top: 11px;">&copy; 2021 |<a href="{{ path('index')}}"
+                        style="background-color: transparent;">Skeleton Jobs</a></p>
+
+            </footer>
+        </div>
+        {% endblock pie %}
+    </div>
+
+    {% block javascripts %}
+    <script src="{{asset('js/display.js')}}"></script>
+    <script src="{{asset('js/loading.js')}}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.scrolly.min.js')}}"></script>
+    <script src="{{asset('js/jquery.dropotron.min.js')}}"></script>
+    <script src="{{asset('js/jquery.scrollex.min.js')}}"></script>
+    <script src="{{asset('js/browser.min.js')}}"></script>
+    <script src="{{asset('js/breakpoints.min.js')}}"></script>
+    <script src="{{asset('js/util.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
+
+    {% endblock %}
+
+</body>
+
+</html>

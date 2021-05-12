@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block body %}
+<div class="editar">
+    <div>
+        <h1 style="font-size: 2em;">Editar perfil</h1>
+        <form action="{{ path('usuarios_editar') }}" class="formulario" enctype="multipart/form-data" method="post">
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre" value="{{ usuario.nombre }}"><br>
+
+            <label for="apellidos">Apellidos: </label>
+            <input type="text" name="apellidos" id="apellidos" value="{{ usuario.apellidos }}" required><br>
+
+            <label for="telefono">Telefono: </label>
+            <input type="tel" name="telefono" id="telefono" value="{{ usuario.telefono }}" required><br>
+
+            <label for="cv">CV: </label>
+            <input type="file" name="cv" id="cv"><br>
+
+            <label for="direccion">Dirección: </label>
+            <input type="text" name="direccion" id="direccion" value="{{ usuario.direccion }}"><br>
+
+            <label for="codigo_postal">Codigo postal: </label>
+            <input type="number" name="codigo_postal" id="codigo_postal" value="{{ usuario.codigopostal }}"><br>
+
+            <label for="pais">Pais: </label>
+            <input type="text" name="pais" id="pais" value="{{ usuario.pais }}"><br>
+
+            <label for="provincia">Provincia: </label>
+            <input type="text" name="provincia" id="provincia" value="{{ usuario.provincia }}"><br>
+
+            <label for="localidad">Localidad: </label>
+            <input type="text" name="localidad" id="localidad" value="{{ usuario.localidad }}"><br>
+
+            <label for="descripcion">Descripcion: </label>
+            <textarea id="descripcion" name="descripcion">{{ usuario.descripcion }}</textarea><br>
+
+            <input style="width:60%;" class="button primary" type="submit" value="Registrarse">
+        </form>
+
+        <a  style="width:60%;" class="button primary" href="{{ path('usuarios_perfil') }}">Volver al perfil</a>
+    </div>
+</div>
+{% endblock %}

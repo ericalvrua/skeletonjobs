@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enviar correo{% endblock %}
+
+{% block body %}
+
+<div class="editar">
+    <h1 style="font-size: 2.5em;">Contacto con el usuario</h1>
+    <div id="envioCorreo">
+        <form action="{{ path('usuarios_crearCorreo', {'idUsuario': id, 'idOferta': oferta})}}">
+            <label style="font-size: 1.5em;" for="asunto">Asunto:</label>
+            <input type="text" name="asunto" id="asunto" required><br><br>
+
+            <label style="font-size: 1.5em;" for="mensaje">Mensaje:</label>
+            <textarea name="mensaje" rows="10" cols="50"
+                placeholder="Escriba el contenido del correo"></textarea><br><br>
+
+            <input style="width:60%;" class="button primary" type="submit" value="Enviar">
+        </form>
+    </div>
+    <a style="width:60%" class="button primary" href="{{ path('ofertas_usuarios_inscritos', {'id': oferta}) }}">Atras</a>
+</div>
+{% endblock %}

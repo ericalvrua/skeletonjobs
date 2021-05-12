@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Empresas
+{% endblock title %}
+
+{% block javascripts %}
+
+<script src="{{asset('js/validar.js')}}"></script>
+<script src="{{asset('js/loading.js')}}"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery.scrolly.min.js')}}"></script>
+<script src="{{asset('js/jquery.dropotron.min.js')}}"></script>
+<script src="{{asset('js/jquery.scrollex.min.js')}}"></script>
+<script src="{{asset('js/browser.min.js')}}"></script>
+<script src="{{asset('js/breakpoints.min.js')}}"></script>
+<script src="{{asset('js/util.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
+
+{% endblock javascripts %}
+
+{% block body %}
+<div class="registro">
+    <h1 style="font-size: 2em;">Crear Empresa</h1>
+    
+    {% include "empresas/_formulario.html.twig" with {'accion': path('empresas_crear') }%}
+    
+    
+</div>
+
+{% endblock body %}
+

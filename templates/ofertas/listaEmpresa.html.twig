@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista ofertas{% endblock %}
+
+{% block body %}
+<div class="listaofertas">
+    <h1 style="text-align:center;font-size: 3em;">Lista de tus ofertas</h1>
+    {% for oferta in ofertas %}
+    <div class="elementosofertas">
+        {% if oferta.borrador == true %}
+        <h1 style="margin-top:0.5em;margin-right:0.5em; color:black;float:right">Borrador</h1>
+
+        {% endif %}
+        <h2 style="text-align: center;">{{ oferta.puesto }}</h2>
+        <h4 style="text-align: center;">{{ oferta.tipo }}</h4>
+        <a style="margin-right: 3%; width:95%" class="button primary"
+            href="{{ path('ofertas_usuarios_inscritos', {'id': oferta.id}) }}">Usuarios
+            inscritos</a><br><br>
+
+        <a style="margin-right:  3%; width:95%" class="button primary"
+            href="{{ path('ofertas_cerrar', {'id': oferta.id}) }}">Cerrar
+            Oferta</a><br><br>
+
+        <a style="margin-right:  3%; width:95%" class="button primary"
+            href="{{ path('ofertas_delete', {'id': oferta.id}) }}">Eliminar Oferta</a><br><br>
+
+        {% if oferta.borrador == true %}
+
+        <a style="margin-right: 3%; width:95%" class="button primary"
+            href="{{ path('ofertas_editar', {'id': oferta.id}) }}">Modificar Oferta</a><br><br>
+
+        {% else %}
+
+        {% endif %}
+
+    </div><br>
+    {% else %}
+    <h1 style="font-size: 1.5em;text-align: center;">No existe ninguna oferta</h1>
+    {% endfor %}
+</div>
+<a style="width:60%;float: right; margin-top:-4em; margin-right:20%" class="button primary" href="{{ path('empresas_perfil') }}">Volver al perfil</a></td>
+</div>
+
+{% endblock %}

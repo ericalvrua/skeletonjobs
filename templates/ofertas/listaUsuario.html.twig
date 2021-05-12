@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista ofertas{% endblock %}
+
+{% block body %}
+
+
+<div class="listaofertas">
+    <h1 style="font-size: 3em;text-align:center">Inscripciones</h1>
+
+            {% for oferta in ofertas %}
+            <div class="elementosofertas">
+
+                <h2 style="text-align: center;">{{ oferta.ofertas.puesto }}</h2>
+
+                <h2 style="text-align: center;">{{ oferta.ofertas.tipo }}</h2>
+                
+                    <a style="width:90%;margin-right:5%" class="button primary" href="{{ path('ofertas_show', {'id': oferta.ofertas.id}) }}">Mas
+                        detalles</a><br><br>
+
+                    </div><br>
+            {% else %}
+            <h1 style="font-size: 1.5em;text-align: center;">No te has inscrito en ofertas</h1>
+            {% endfor %}
+        
+    <a style="width:60%; margin-left:20%" class="button primary" href="{{ path('usuarios_perfil') }}">Volver al perfil</a>
+</div>
+
+{% endblock %}

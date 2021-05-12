@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Usuarios{% endblock %}
+
+{% block body %}
+<div class="editar">
+    <div>
+        <h1 style="font-size: 2em;">Editar perfil</h1>
+    <form action="{{ path('empresas_editar') }}" class="formulario" method="post">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre" value="{{ empresa.nombre }}"><br>
+
+        <label for="telefono">Telefono: </label>
+        <input type="tel" name="telefono" id="telefono" value="{{ empresa.telefono }}" required><br>
+
+        <label for="direccion">Dirección: </label>
+        <input type="text" name="direccion" id="direccion" value="{{ empresa.direccion }}"><br>
+
+        <label for="codigo_postal">Codigo postal: </label>
+        <input type="number" name="codigo_postal" id="codigo_postal" value="{{ empresa.codigopostal }}"><br>
+
+        <label for="pais">Pais: </label>
+        <input type="text" name="pais" id="pais" value="{{ empresa.pais }}"><br>
+
+        <label for="provincia">Provincia: </label>
+        <input type="text" name="provincia" id="provincia" value="{{ empresa.provincia }}"><br>
+
+        <label for="localidad">Localidad: </label>
+        <input type="text" name="localidad" id="localidad" value="{{ empresa.localidad }}"><br>
+
+        <label for="descripcion">Descripcion: </label>
+        <textarea id="descripcion" name="descripcion" >{{ empresa.descripcion }}</textarea><br>
+
+        <input class="button primary" type="submit" value="Editar">
+    </form>
+</div>
+<a class="button primary" href="{{ path('empresas_perfil') }}">Volver al perfil</a>
+</div>
+{% endblock %}

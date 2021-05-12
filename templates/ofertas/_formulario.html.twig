@@ -1,0 +1,38 @@
+<div>
+    <form action="{{ accion }}" method="post" class="formulario" onsubmit="manejador(event)">
+        <label for="puesto">Puesto: </label>
+        <input type="string" name="puesto" id="puesto" required><br>
+        <label for="descripcion">Descripcion: </label>
+        <textarea name="descripcion" id="descripcion"></textarea><br>
+        <label for="tipo">Tipo de conrato: </label>
+        <input type="string" name="tipo" id="tipo" required><br>
+        <select name="categoria" id="">
+            {% for categoria in categorias %}
+            <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+            {% endfor %}
+        </select><br>
+        <label for="">Seleccion localizacion</label>
+        {% for isla in islas %}
+        <label for="isla{{isla.id}}"></label>
+        <input type="checkbox" value="{{isla.id}}" name="isla{{isla.id}}" id="isla{{isla.id}}">{{isla.nombre}}<br>
+        {% endfor %}
+        <br>
+
+        <div class="field_wrapper">
+            <div>
+                <label for="Preguntas">Preguntas</label>
+                <input type="text" name="field_name[]" value="" />
+                <a href="javascript:void(0);" class="add_button" title="Add field">Añadir</a>
+            </div>
+        </div><br><br>
+
+        <input style="width:50%;" class="button primary" type="submit" value="Crear Oferta" name="publicar"><br><br>
+        <input style="width:50%;" class="button primary" type="submit" value="Guardar Borrador" name="guardar">
+    </form>
+</div>
+
+{% if error is defined %}
+
+<p>{{ error }}</p>
+
+{% endif %}

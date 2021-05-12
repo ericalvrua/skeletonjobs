@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista ofertas{% endblock %}
+
+{% block body %}
+
+
+<div class="filtros">
+    <div class="buscar2">
+        <h2 style="margin-top: 50px;">Buscador</h2>
+        <form action=" {{ path('ofertas_index') }} " method='POST' id="buscador2">
+            <label for="busqueda2"></label>
+            <input type="text" name="busqueda" placeholder="¿Que quieres buscar?" /><br />
+            <input style="width:60%" class="button primary" type="submit" value="Buscar">
+        </form>
+    </div><br>
+    <button class="button primary" style="width:60%" type="button" onclick="mostrar()">Mostrar mas filtros</button><br><br>
+    <div id="otros" style="display: none;">
+        <div class="categoria">
+            <form method="GET" action="{{ path('ofertas_index') }}">
+                <h2>Categorias</h2>
+                <select name="categorias" onchange="this.form.submit()">
+                    <option value="">Seleccione categoría...</option>
+                    {% for categoria in categorias %}
+                    <option value={{ categoria.id }}>{{categoria.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+        <div class="isla">
+            <form method="GET" action="{{ path('ofertas_index') }}">
+                <h2>Localización</h2>
+                <select name="localizacion" onchange="this.form.submit()">
+                    <option value="">Seleccione isla...</option>
+                    {% for isla in islas %}
+                    <option value={{ isla.id }}>{{isla.nombre}}</option>
+                    {% endfor %}
+                </select><br>
+            </form>
+        </div>
+        <div class="fecha">
+            <form method="GET" action="{{ path('ofertas_index') }}">
+                <h2>Fecha</h2>
+                <label for="fecha1"></label>
+                <input type="date" id="fecha1" name="fecha1">
+
+                <label for="fecha2"></label>
+                <input type="date" id="fecha2" name="fecha2"><br>
+
+                <input style="width:60%" class="button primary" type="submit">
+            </form>
+        </div>
+        <div class="actividad">
+            <form method="GET" action="{{ path('ofertas_index') }}">
+                <h2>Activo/Inactivo</h2>
+
+                <select name="actividad" onchange="this.form.submit()">
+                    <option value="">Seleccione actividad...</option>
+                    <option value='true'>Activo</option>
+                    <option value='false'>Inactivo</option>
+                </select><br>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="listaofertas" style="margin-top:5%;">
+    {% for oferta in ofertas %}
+    {% if oferta.borrador == false %}
+    <div class="elementosofertas">
+
+        <h2 style="text-align:center">{{ oferta.puesto }}</h2>
+        <h4 style="text-align:center">{{ oferta.tipo }}</h4>
+        <p style="margin-left:5%;">{{ oferta.descripcion }}</p>
+
+
+        <a style="width:80%;float: right;margin-right:10%" class="button primary"
+            href="{{ path('ofertas_show', {'id': oferta.id}) }}">Mas
+            detalles</a><br><br>
+
+
+    </div><br>
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+{% endblock %}
